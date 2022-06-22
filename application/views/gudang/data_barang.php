@@ -147,8 +147,8 @@
                                             <td><?= $brg->satuan ?></td>
                                             <td><?= number_format($brg->harga, 0, ',', '.'); ?></td>
                                             <td class="text-center">
-                                                <a href="#">Edit</a> |
-                                                <a href="#">Hapus</a>
+                                                <a href="#" class="btn btn-danger-gradient btn-sm"><i class="fe fe-trash-2"></i></a> |
+                                                <a href="#" class="btn btn-primary-gradient btn-sm"><i class="fe fe-edit"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

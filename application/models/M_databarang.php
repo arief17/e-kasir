@@ -6,8 +6,12 @@ class M_databarang extends CI_Model
         return $this->db->get('barang');
     }
 
+
     function tampil_stokbarang()
     {
-        return $this->db->get('stok');
+        $this->db->select('*');
+        $this->db->from('barang');
+        $this->db->join('stok', 'stok.kd_barang = barang.kd_barang');
+        return $this->db->get('');
     }
 }

@@ -137,7 +137,7 @@
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($stok as $stokbrg) {
+                                    foreach ($join as $stokbrg) {
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
@@ -145,10 +145,10 @@
                                             <td><?= $stokbrg->nama_barang ?></td>
                                             <td><?= $stokbrg->merk ?></td>
                                             <td><?= $stokbrg->satuan ?></td>
-                                            <td><?= number_format($stokbrg->harga, 0, ',', '.'); ?></td>
+                                            <td><?= $stokbrg->stok ?></td>
                                             <td class="text-center">
-                                                <a href="#">Edit</a> |
-                                                <a href="#">Hapus</a>
+                                                <a href="#" class="btn btn-danger-gradient btn-sm"><i class="fe fe-trash-2"></i></a> |
+                                                <a href="#" class="btn btn-primary-gradient btn-sm"><i class="fe fe-edit"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>
