@@ -11,11 +11,6 @@
                     <h4 class="content-title mb-0 my-auto">Tabel</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ <?= $title ?></span>
                 </div>
             </div>
-            <div class="d-flex my-xl-auto right-content">
-                <div class="pe-1 mb-xl-0">
-                    <a type="button" class="btn btn-info me-2 btn-b" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8"><i class="mdi mdi-filter-variant"></i> Tambah Barang</a>
-                </div>
-            </div>
         </div>
         <!-- breadcrumb -->
 
@@ -119,6 +114,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"><?= $title ?></h3>
+                        <div class="pe-1 mb-xl-0">
+                            <a type="button" class="btn btn-info me-2 btn-b" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8"><i class="mdi mdi-filter-variant"></i> Tambah Barang</a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -131,6 +129,7 @@
                                         <th class="wd-20p border-bottom-0">merk</th>
                                         <th class="wd-15p border-bottom-0">satuan</th>
                                         <th class="wd-15p border-bottom-0">harga</th>
+                                        <th class="wd-15p border-bottom-0">Gambar</th>
                                         <th class="wd-10p border-bottom-0 text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -146,6 +145,7 @@
                                             <td><?= $brg->merk ?></td>
                                             <td><?= $brg->satuan ?></td>
                                             <td><?= number_format($brg->harga, 0, ',', '.'); ?></td>
+                                            <td><?= $brg->gbr_barang ?></td>
                                             <td class="text-center">
                                                 <a href="#" class="btn btn-danger-gradient btn-sm"><i class="fe fe-trash-2"></i></a> |
                                                 <a href="#" class="btn btn-primary-gradient btn-sm"><i class="fe fe-edit"></i></a>
@@ -169,43 +169,57 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
+                    <?php
+                    date_default_timezone_set('Asia/Jakarta');
+                    $date =  date('Y-m-d H:i:s');
+                    ?>
                     <h6 class="modal-title">#Form Tambah Barang</h6><button aria-label="Close" class="close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="card-body pt-0">
-                        <form>
-                            <div class="">
+                        <form action="<?= site_url() ?>/master/tambah_barang" method="POST">
+                            <div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Kode Barang</label>
-                                    <input type="email" class="form-control col-sm-5" id="exampleInputEmail1" placeholder="Masukan Kode Barang">
+                                    <input class="form-control" value="<?= $kd_barang ?>" name="kd_barang" readonly type="text">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Nama Barang</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Masukan Nama Barang">
+                                    <textarea type="text" class="form-control" id="exampleInputPassword1" placeholder="Masukan Nama Barang" name="nama_barang"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Harga Barang</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">Rp</span>
-                                        <input type="password" class="form-control col-sm-5" id="exampleInputPassword1" placeholder="Masukan Satuan Barang">
-                                    </div><!-- input-group -->
+                                    <label for="exampleInputPassword1">Merk Barang</label>
+                                    <input type="text" class="form-control col-sm-5" id="exampleInputPassword1" placeholder="Masukan Merk Barang" name="merk">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Satuan</label>
-                                    <input type="password" class="form-control col-sm-5" id="exampleInputPassword1" placeholder="Masukan Satuan Barang">
+                                    <select name="satuan" id="#" class="form-control col-sm-4">
+                                        <option value="Kg">Kg</option>
+                                        <option value="Sachet">Sachet</option>
+                                        <option value="Dus">Dus</option>
+                                        <option value="Liter">Liter</option>
+                                        <option value="Buah">Buah</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Jumlah Barang Masuk</label>
-                                    <input type="password" class="form-control col-sm-5" id="exampleInputPassword1" placeholder="Masukan Nama Barang">
+                                    <label for="exampleInputPassword1">Harga</label>
+                                    <input type="number" name="harga" class="form-control col-sm-5" id="exampleInputPassword1" placeholder="Masukan Harga Barang">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Gambar</label>
+                                    <input type="file" name="gbr_barang" class="form-control col-sm-5" id="exampleInputPassword1" placeholder="Masukan Nama Barang">
+                                </div>
+                                <!-- tanggal -->
+                                <input type="hidden" value="<?= $date ?>" name="tanggal">
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn ripple btn-primary" type="submit">Simpan</button>
+                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Batal</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn ripple btn-primary" type="button">Simpan</button>
-                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Batal</button>
-                </div>
+
             </div>
         </div>
     </div>

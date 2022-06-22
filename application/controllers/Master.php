@@ -27,7 +27,7 @@ class Master extends CI_Controller
 
     public function gudang_databarang()
     {
-
+        $data['kd_barang'] = $this->m_databarang->CreateCode();
         $data['barang'] = $this->m_databarang->tampil_databarang()->result();
         $data['name'] = 'Admin E-Kasir';
         $data['title'] = 'Data Barang - Gudang';
@@ -49,5 +49,29 @@ class Master extends CI_Controller
         $this->load->view('_partials/sidenav', $data);
         $this->load->view('gudang/data_stokbarang', $data);
         $this->load->view('_partials/footer', $data);
+    }
+
+    public function tambah_barang()
+    {
+        $kd_barang = $this->input->post('kd_barang');
+        $nama_barang = $this->input->post('nama_barang');
+        $merk = $this->input->post('merk');
+        $satuan = $this->input->post('satuan');
+        $harga = $this->input->post('harga');
+        $gbr_barang = $this->input->post('gbr_barang');
+        $tanggal = $this->input->post('tanggal');
+
+        $data = array(
+            'kd_barang' => $kd_barang,
+            'nama_barang' => $nama_barang,
+            'merk' => $merk,
+            'satuan' => $satuan,
+            'harga' => $harga,
+            'gbr_barang' => $gbr_barang,
+            'tanggal' => $tanggal
+        );
+
+        $this->m_databarang->tambah_barang($data, 'barang');
+        redirect('master/gudang_databarang');
     }
 }

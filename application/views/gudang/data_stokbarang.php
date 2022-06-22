@@ -11,11 +11,7 @@
                     <h4 class="content-title mb-0 my-auto">Tabel</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ <?= $title ?></span>
                 </div>
             </div>
-            <div class="d-flex my-xl-auto right-content">
-                <div class="pe-1 mb-xl-0">
-                    <a type="button" class="btn btn-info me-2 btn-b" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8"><i class="mdi mdi-filter-variant"></i> Tambah Barang</a>
-                </div>
-            </div>
+
         </div>
         <!-- breadcrumb -->
 
@@ -119,6 +115,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"><?= $title ?></h3>
+                        <div class="pe-1 mb-xl-0">
+                            <a type="button" class="btn btn-info me-2 btn-b" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8"><i class="mdi mdi-filter-variant"></i> Update Stok Barang</a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
